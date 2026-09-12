@@ -1,0 +1,1008 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio cá nhân của Yue Ying - Software Engineering Student">
+    <title>Yue Ying | Personal Portfolio</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+        :root {
+            --bg: #080b16;
+            --card: rgba(18, 24, 43, 0.72);
+            --border: rgba(148, 163, 184, 0.15);
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --primary: #8b5cf6;
+            --secondary: #06b6d4;
+            --gradient: linear-gradient(135deg, #8b5cf6, #06b6d4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .orb {
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            filter: blur(110px);
+            opacity: .18;
+        }
+
+        .orb.one {
+            background: #7c3aed;
+            top: -180px;
+            left: -100px;
+        }
+
+        .orb.two {
+            background: #0891b2;
+            bottom: -200px;
+            right: -100px;
+        }
+
+        .container {
+            width: min(1120px, 90%);
+            margin: auto;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(8, 11, 22, .82);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            min-height: 76px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: #a78bfa;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .nav-links a {
+            transition: color .25s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .menu-btn {
+            display: none;
+            background: transparent;
+            color: white;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 620px;
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            align-items: center;
+            gap: 70px;
+            padding: 85px 0 65px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            border: 1px solid rgba(139, 92, 246, .35);
+            background: rgba(139, 92, 246, .1);
+            color: #c4b5fd;
+            padding: 7px 13px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 22px;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #34d399;
+            box-shadow: 0 0 12px #34d399;
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(42px, 5.3vw, 72px);
+            line-height: 1.08;
+            letter-spacing: -3px;
+            margin-bottom: 20px;
+        }
+
+        .gradient-text {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-description {
+            color: var(--muted);
+            max-width: 510px;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 13px 21px;
+            border-radius: 11px;
+            border: 1px solid var(--border);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform .25s, border-color .25s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            border-color: #a78bfa;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            border: none;
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,.04);
+        }
+
+        /* PROFILE CARD */
+        .profile-card {
+            position: relative;
+            padding: 30px;
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            background: var(--card);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px 80px rgba(0,0,0,.3);
+            text-align: center;
+        }
+
+        .profile-card::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            border-radius: 25px;
+            background: linear-gradient(135deg, rgba(139,92,246,.5), transparent 45%, rgba(6,182,212,.3));
+            z-index: -1;
+            opacity: .7;
+        }
+
+        .avatar {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 50px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #7c3aed, #0891b2);
+            border: 5px solid rgba(255,255,255,.1);
+            box-shadow: 0 0 50px rgba(139,92,246,.3);
+        }
+
+        .profile-card h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 25px;
+            margin-bottom: 6px;
+        }
+
+        .profile-card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .profile-tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: 22px;
+        }
+
+        .profile-tags span,
+        .skill {
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,.04);
+            padding: 6px 11px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #cbd5e1;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-heading {
+            margin-bottom: 35px;
+        }
+
+        .section-heading .small {
+            color: #a78bfa;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .section-heading h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(30px, 4vw, 42px);
+            letter-spacing: -1px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            margin-top: 8px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .glass {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 28px;
+            backdrop-filter: blur(12px);
+        }
+
+        .glass h3 {
+            font-size: 18px;
+            margin-bottom: 14px;
+        }
+
+        .glass p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .facts {
+            display: grid;
+            gap: 16px;
+        }
+
+        .fact {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .fact-icon {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            background: rgba(139,92,246,.13);
+            border-radius: 12px;
+            font-size: 20px;
+        }
+
+        .fact strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .fact span {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* SKILLS */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill {
+            padding: 11px 15px;
+            font-size: 13px;
+            transition: transform .2s, border-color .2s;
+        }
+
+        .skill:hover {
+            transform: translateY(-3px);
+            border-color: #8b5cf6;
+        }
+
+        /* PROJECTS */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .project {
+            overflow: hidden;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            transition: transform .3s, border-color .3s;
+        }
+
+        .project:hover {
+            transform: translateY(-7px);
+            border-color: rgba(139,92,246,.55);
+        }
+
+        .project-cover {
+            height: 155px;
+            display: grid;
+            place-items: center;
+            font-size: 48px;
+            background: linear-gradient(135deg, rgba(139,92,246,.3), rgba(6,182,212,.12));
+            border-bottom: 1px solid var(--border);
+        }
+
+        .project-content {
+            padding: 22px;
+        }
+
+        .project-content h3 {
+            margin-bottom: 9px;
+            font-size: 18px;
+        }
+
+        .project-content p {
+            color: var(--muted);
+            font-size: 13px;
+            min-height: 63px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 16px 0;
+        }
+
+        .project-tech span {
+            color: #c4b5fd;
+            font-size: 11px;
+            background: rgba(139,92,246,.1);
+            padding: 5px 8px;
+            border-radius: 6px;
+        }
+
+        .project-link {
+            color: #a78bfa;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* CI/CD */
+        .pipeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .pipeline-step {
+            text-align: center;
+            padding: 22px 12px;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            background: rgba(255,255,255,.025);
+        }
+
+        .pipeline-step .number {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            margin: 0 auto 12px;
+            background: rgba(139,92,246,.15);
+            color: #c4b5fd;
+            font-weight: 700;
+        }
+
+        .pipeline-step h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .pipeline-step p {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .pipeline-status {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 25px;
+            color: #34d399;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* CONTACT */
+        .contact {
+            text-align: center;
+            max-width: 680px;
+            margin: auto;
+        }
+
+        .contact p {
+            color: var(--muted);
+            margin: 14px auto 28px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            color: #cbd5e1;
+            font-size: 13px;
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 25px 0;
+            color: var(--muted);
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .footer-highlight {
+            color: #a78bfa;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 850px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding-top: 60px;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .profile-card {
+                max-width: 430px;
+                width: 100%;
+                margin: auto;
+            }
+
+            .about-grid,
+            .projects {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .project:last-child {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 76px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                padding: 20px 5%;
+                background: #0b1020;
+                border-bottom: 1px solid var(--border);
+                gap: 18px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            h1 {
+                font-size: 43px;
+                letter-spacing: -1.5px;
+            }
+
+            section {
+                padding: 55px 0;
+            }
+
+            .about-grid,
+            .projects,
+            .pipeline {
+                grid-template-columns: 1fr;
+            }
+
+            .project:last-child {
+                grid-column: auto;
+            }
+
+            .pipeline-step {
+                display: grid;
+                grid-template-columns: 38px 1fr;
+                text-align: left;
+                align-items: center;
+                column-gap: 14px;
+            }
+
+            .pipeline-step .number {
+                grid-row: span 2;
+                margin: 0;
+            }
+
+            .pipeline-step h3 {
+                margin-bottom: 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background">
+        <div class="orb one"></div>
+        <div class="orb two"></div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="container nav-inner">
+            <a href="#home" class="logo">Yue<span>.dev</span></a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Trang chủ</a></li>
+                <li><a href="#about">Giới thiệu</a></li>
+                <li><a href="#skills">Kỹ năng</a></li>
+                <li><a href="#projects">Dự án</a></li>
+                <li><a href="#contact">Liên hệ</a></li>
+            </ul>
+
+            <button class="menu-btn" id="menuBtn" aria-label="Mở menu">☰</button>
+        </div>
+    </nav>
+
+    <main>
+        <!-- HERO -->
+        <section class="container hero" id="home">
+            <div class="hero-content">
+                <div class="eyebrow">
+                    <span class="dot"></span>
+                    AVAILABLE FOR LEARNING & PROJECTS
+                </div>
+
+                <h1>
+                    Xin chào, mình là<br>
+                    <span class="gradient-text">Yue Ying.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Sinh viên Kỹ thuật phần mềm đam mê lập trình,
+                    phát triển web và khám phá những công nghệ mới.
+                    Mình đang từng bước xây dựng hành trình trở thành
+                    một Software Developer.
+                </p>
+
+                <div class="buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        Xem dự án ↗
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        Liên hệ với mình
+                    </a>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="avatar">YY</div>
+                <h2>Yue Ying</h2>
+                <p>Software Engineering Student</p>
+                <p>ICTU · Việt Nam</p>
+
+                <div class="profile-tags">
+                    <span>💻 Developer</span>
+                    <span>🚀 Learner</span>
+                    <span>⚡ DevOps</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about">
+            <div class="container">
+                <div class="section-heading">
+                    <div class="small">01 / About me</div>
+                    <h2>Một chút về mình</h2>
+                    <p>Không ngừng học hỏi, không ngừng cải thiện.</p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="glass">
+                        <h3>👋 Xin chào!</h3>
+                        <p>
+                            Mình là một sinh viên ngành Kỹ thuật phần mềm.
+                            Hiện tại mình đang tập trung học lập trình,
+                            phát triển ứng dụng web và tìm hiểu quy trình
+                            CI/CD trong thực tế.
+                            <br><br>
+                            Mục tiêu của mình là xây dựng những sản phẩm
+                            có ích, viết code tốt hơn mỗi ngày và tích lũy
+                            kinh nghiệm qua các dự án thực tế.
+                        </p>
+                    </div>
+
+                    <div class="glass facts">
+                        <div class="fact">
+                            <div class="fact-icon">🎓</div>
+                            <div>
+                                <strong>Học vấn</strong>
+                                <span>Kỹ thuật phần mềm · ICTU</span>
+                            </div>
+                        </div>
+
+                        <div class="fact">
+                            <div class="fact-icon">📍</div>
+                            <div>
+                                <strong>Địa điểm</strong>
+                                <span>Việt Nam</span>
+                            </div>
+                        </div>
+
+                        <div class="fact">
+                            <div class="fact-icon">🎯</div>
+                            <div>
+                                <strong>Định hướng</strong>
+                                <span>Software Developer / DevOps</span>
+                            </div>
+                        </div>
+
+                        <div class="fact">
+                            <div class="fact-icon">🌱</div>
+                            <div>
+                                <strong>Trạng thái</strong>
+                                <span>Đang học hỏi và phát triển</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills">
+            <div class="container">
+                <div class="section-heading">
+                    <div class="small">02 / Skills</div>
+                    <h2>Công nghệ mình đang học</h2>
+                    <p>Những công cụ và kiến thức mình đang từng bước làm chủ.</p>
+                </div>
+
+                <div class="glass">
+                    <div class="skills">
+                        <span class="skill">🐍 Python</span>
+                        <span class="skill">C++</span>
+                        <span class="skill">C</span>
+                        <span class="skill">C#</span>
+                        <span class="skill">JavaScript</span>
+                        <span class="skill">HTML5</span>
+                        <span class="skill">CSS3</span>
+                        <span class="skill">SQL</span>
+                        <span class="skill">OOP</span>
+                        <span class="skill">Data Structures</span>
+                        <span class="skill">Git</span>
+                        <span class="skill">GitHub Actions</span>
+                        <span class="skill">CI/CD</span>
+                        <span class="skill">ASP.NET</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects">
+            <div class="container">
+                <div class="section-heading">
+                    <div class="small">03 / Projects</div>
+                    <h2>Dự án & bài thực hành</h2>
+                    <p>Một số dự án có thể giới thiệu trên portfolio.</p>
+                </div>
+
+                <div class="projects">
+                    <article class="project">
+                        <div class="project-cover">🌐</div>
+                        <div class="project-content">
+                            <h3>Personal Portfolio</h3>
+                            <p>
+                                Website cá nhân giới thiệu bản thân,
+                                kỹ năng, dự án và hành trình học tập.
+                            </p>
+                            <div class="project-tech">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                            </div>
+                            <a class="project-link" href="#home">
+                                Đang phát triển ↗
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="project">
+                        <div class="project-cover">📊</div>
+                        <div class="project-content">
+                            <h3>Quản lý điểm số</h3>
+                            <p>
+                                Ứng dụng quản lý sinh viên và điểm số
+                                với giao diện web và cơ sở dữ liệu.
+                            </p>
+                            <div class="project-tech">
+                                <span>C#</span>
+                                <span>ASP.NET</span>
+                                <span>SQL</span>
+                            </div>
+                            <a class="project-link" href="#contact">
+                                Xem chi tiết ↗
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="project">
+                        <div class="project-cover">⚙️</div>
+                        <div class="project-content">
+                            <h3>CI/CD Pipeline</h3>
+                            <p>
+                                Thực hành tự động hóa quy trình build,
+                                kiểm tra và triển khai website bằng GitHub Actions.
+                            </p>
+                            <div class="project-tech">
+                                <span>Git</span>
+                                <span>GitHub</span>
+                                <span>DevOps</span>
+                            </div>
+                            <a class="project-link" href="#pipeline">
+                                Xem quy trình ↗
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CI/CD -->
+        <section id="pipeline">
+            <div class="container">
+                <div class="section-heading">
+                    <div class="small">04 / DevOps Lab</div>
+                    <h2>CI/CD Pipeline</h2>
+                    <p>Quy trình triển khai tự động trong bài thực hành.</p>
+                </div>
+
+                <div class="glass">
+                    <div class="pipeline">
+                        <div class="pipeline-step">
+                            <div class="number">01</div>
+                            <div>
+                                <h3>Push code</h3>
+                                <p>Đẩy mã nguồn lên GitHub.</p>
+                            </div>
+                        </div>
+
+                        <div class="pipeline-step">
+                            <div class="number">02</div>
+                            <div>
+                                <h3>CI Build</h3>
+                                <p>Tự động kiểm tra và build.</p>
+                            </div>
+                        </div>
+
+                        <div class="pipeline-step">
+                            <div class="number">03</div>
+                            <div>
+                                <h3>Deploy</h3>
+                                <p>Triển khai website tự động.</p>
+                            </div>
+                        </div>
+
+                        <div class="pipeline-step">
+                            <div class="number">04</div>
+                            <div>
+                                <h3>Live</h3>
+                                <p>Website sẵn sàng truy cập.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pipeline-status">
+                        <span class="dot"></span>
+                        Pipeline status: Automated
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+            <div class="container">
+                <div class="glass contact">
+                    <div class="section-heading">
+                        <div class="small">05 / Contact</div>
+                        <h2>Cùng tạo ra điều gì đó nhé!</h2>
+                    </div>
+
+                    <p>
+                        Nếu bạn muốn trao đổi về lập trình, dự án,
+                        công nghệ hoặc đơn giản là làm quen,
+                        hãy kết nối với mình.
+                    </p>
+
+                    <div class="buttons">
+                        <a href="tranhbriona@gmail.com" class="btn btn-primary">
+                            ✉ Gửi email
+                        </a>
+                        <a href="https://github.com/dtc235190003-vietah" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                            GitHub ↗
+                        </a>
+                    </div>
+
+                    <div class="contact-info">
+                        <span>📧 your-email@example.com</span>
+                        <span>💻 github.com/your-username</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>
+                © <span id="year"></span> <span class="footer-highlight">Yue Ying</span>.
+                Built with HTML, CSS & JavaScript.
+            </p>
+            <p>Deployed automatically via GitHub Actions 🚀</p>
+        </div>
+    </footer>
+
+    <script>
+        // Hiển thị năm hiện tại
+        document.getElementById('year').textContent =
+            new Date().getFullYear();
+
+        // Menu mobile
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+            menuBtn.textContent =
+                navLinks.classList.contains('open') ? '✕' : '☰';
+        });
+
+        // Đóng menu sau khi chọn liên kết
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                menuBtn.textContent = '☰';
+            });
+        });
+    </script>
+</body>
+</html>
