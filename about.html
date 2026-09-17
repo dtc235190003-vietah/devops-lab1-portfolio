@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Giới thiệu bản thân - Yue Ying">
+    <title>Giới thiệu | Yue Ying Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+        :root {
+            --bg: #080b16;
+            --card: rgba(18, 24, 43, 0.72);
+            --border: rgba(148, 163, 184, 0.15);
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --primary: #8b5cf6;
+            --gradient: linear-gradient(135deg, #8b5cf6, #06b6d4);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        a { color: inherit; text-decoration: none; }
+        .container { width: min(1120px, 90%); margin: auto; }
+
+        nav { position: sticky; top: 0; z-index: 100; background: rgba(8, 11, 22, .82); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); }
+        .nav-inner { min-height: 76px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 800; }
+        .logo span { color: #a78bfa; }
+        .nav-links { display: flex; gap: 28px; list-style: none; font-size: 14px; color: var(--muted); }
+        .nav-links a:hover, .nav-links a.active { color: white; font-weight: 600; }
+
+        section { padding: 60px 0; }
+        h1 { font-family: 'Space Grotesk', sans-serif; font-size: 42px; margin-bottom: 20px; }
+        .gradient-text { background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 30px; }
+        .glass { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 28px; backdrop-filter: blur(12px); }
+        .glass h3 { font-size: 20px; margin-bottom: 14px; color: #a78bfa; }
+        .glass p { color: var(--muted); font-size: 15px; margin-bottom: 12px; }
+
+        .facts { display: grid; gap: 16px; }
+        .fact { display: flex; align-items: center; gap: 14px; }
+        .fact-icon { width: 42px; height: 42px; display: grid; place-items: center; background: rgba(139,92,246,.13); border-radius: 12px; font-size: 20px; }
+
+        footer { border-top: 1px solid var(--border); padding: 25px 0; text-align: center; color: var(--muted); font-size: 12px; margin-top: 60px; }
+
+        @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav-inner">
+            <a href="index.html" class="logo">Yue<span>.dev</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="about.html" class="active">Giới thiệu</a></li>
+                <li><a href="index.html#skills">Kỹ năng</a></li>
+                <li><a href="index.html#projects">Dự án</a></li>
+                <li><a href="contact.html">Liên hệ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section>
+            <h1>Về bản thân <span class="gradient-text">Yue Ying</span></h1>
+            <p style="color: var(--muted);">Không ngừng học hỏi, không ngừng cải thiện mỗi ngày.</p>
+
+            <div class="about-grid">
+                <div class="glass">
+                    <h3>👋 Mục tiêu & Hành trình</h3>
+                    <p>Mình là sinh viên ngành Kỹ thuật phần mềm. Đam mê lớn nhất của mình là học lập trình, phát triển các ứng dụng web tối ưu và tìm hiểu sâu hơn về DevOps / CI/CD.</p>
+                    <p>Mục tiêu ngắn hạn là làm chủ các công nghệ Full-stack và quy trình phát triển phần mềm chuẩn công nghiệp để sẵn sàng cho các dự án thực tế.</p>
+                </div>
+
+                <div class="glass facts">
+                    <div class="fact">
+                        <div class="fact-icon">🎓</div>
+                        <div>
+                            <strong>Học vấn</strong><br>
+                            <span style="color:var(--muted); font-size: 13px;">Kỹ thuật phần mềm · ICTU</span>
+                        </div>
+                    </div>
+                    <div class="fact">
+                        <div class="fact-icon">📍</div>
+                        <div>
+                            <strong>Địa điểm</strong><br>
+                            <span style="color:var(--muted); font-size: 13px;">Việt Nam</span>
+                        </div>
+                    </div>
+                    <div class="fact">
+                        <div class="fact-icon">🎯</div>
+                        <div>
+                            <strong>Định hướng</strong><br>
+                            <span style="color:var(--muted); font-size: 13px;">Software Developer / DevOps</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© Yue Ying · Built with HTML, CSS & JS</p>
+        </div>
+    </footer>
+</body>
+</html>

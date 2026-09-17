@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Liên hệ với Yue Ying - Software Engineering Student">
+    <title>Liên hệ | Yue Ying Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+        :root {
+            --bg: #080b16;
+            --card: rgba(18, 24, 43, 0.72);
+            --border: rgba(148, 163, 184, 0.15);
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --primary: #8b5cf6;
+            --secondary: #06b6d4;
+            --gradient: linear-gradient(135deg, #8b5cf6, #06b6d4);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--bg); 
+            color: var(--text); 
+            line-height: 1.6; 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        a { color: inherit; text-decoration: none; }
+        button { font: inherit; }
+        .container { width: min(1120px, 90%); margin: auto; }
+
+        /* NAVBAR */
+        nav { 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+            background: rgba(8, 11, 22, .82); 
+            backdrop-filter: blur(18px); 
+            border-bottom: 1px solid var(--border); 
+        }
+        .nav-inner { 
+            min-height: 76px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        .logo { 
+            font-family: 'Space Grotesk', sans-serif; 
+            font-size: 24px; 
+            font-weight: 800; 
+        }
+        .logo span { color: #a78bfa; }
+        .nav-links { 
+            display: flex; 
+            gap: 28px; 
+            list-style: none; 
+            font-size: 14px; 
+            color: var(--muted); 
+        }
+        .nav-links a:hover, .nav-links a.active { color: white; font-weight: 600; }
+        .menu-btn { 
+            display: none; 
+            background: transparent; 
+            color: white; 
+            border: 1px solid var(--border); 
+            border-radius: 10px; 
+            padding: 8px 12px; 
+            cursor: pointer; 
+        }
+
+        /* MAIN */
+        main { flex: 1; }
+        section { padding: 60px 0; }
+        h1 { font-family: 'Space Grotesk', sans-serif; font-size: 42px; margin-bottom: 12px; }
+        .gradient-text { background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+        .contact-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1.2fr; 
+            gap: 30px; 
+            margin-top: 35px; 
+        }
+        .glass { 
+            background: var(--card); 
+            border: 1px solid var(--border); 
+            border-radius: 18px; 
+            padding: 28px; 
+            backdrop-filter: blur(12px); 
+        }
+        
+        /* CONTACT INFO */
+        .contact-info-list { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 20px; 
+            margin-top: 24px; 
+        }
+        .contact-item { display: flex; align-items: center; gap: 16px; }
+        .contact-icon { 
+            width: 46px; 
+            height: 46px; 
+            display: grid; 
+            place-items: center; 
+            background: rgba(139, 92, 246, .15); 
+            border: 1px solid rgba(139, 92, 246, .3); 
+            border-radius: 12px; 
+            font-size: 20px; 
+        }
+        .contact-detail h4 { font-size: 13px; color: var(--muted); font-weight: 500; }
+        .contact-detail p, .contact-detail a { font-size: 15px; font-weight: 600; }
+        .contact-detail a:hover { color: #a78bfa; text-decoration: underline; }
+
+        /* CONTACT FORM */
+        .contact-form { display: flex; flex-direction: column; gap: 18px; }
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+        .form-group label { font-size: 13px; font-weight: 600; color: var(--muted); }
+        .form-control { 
+            background: rgba(255, 255, 255, .04); 
+            border: 1px solid var(--border); 
+            border-radius: 10px; 
+            padding: 12px 16px; 
+            color: white; 
+            font-family: inherit; 
+            font-size: 14px; 
+            outline: none; 
+            transition: border-color .25s; 
+        }
+        .form-control:focus { border-color: #8b5cf6; }
+        textarea.form-control { resize: vertical; min-height: 120px; }
+
+        .btn { 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 8px; 
+            padding: 13px 21px; 
+            border-radius: 11px; 
+            border: none; 
+            font-size: 14px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            background: var(--gradient); 
+            color: white; 
+            transition: transform .25s; 
+        }
+        .btn:hover { transform: translateY(-3px); }
+
+        /* FOOTER */
+        footer { 
+            border-top: 1px solid var(--border); 
+            padding: 25px 0; 
+            text-align: center; 
+            color: var(--muted); 
+            font-size: 12px; 
+            margin-top: 60px; 
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid { grid-template-columns: 1fr; }
+            .nav-links { 
+                display: none; 
+                position: absolute; 
+                top: 76px; 
+                left: 0; 
+                right: 0; 
+                flex-direction: column; 
+                padding: 20px 5%; 
+                background: #0b1020; 
+                border-bottom: 1px solid var(--border); 
+                gap: 18px; 
+            }
+            .nav-links.open { display: flex; }
+            .menu-btn { display: block; }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="container nav-inner">
+            <a href="index.html" class="logo">Yue<span>.dev</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="about.html">Giới thiệu</a></li>
+                <li><a href="index.html#skills">Kỹ năng</a></li>
+                <li><a href="index.html#projects">Dự án</a></li>
+                <li><a href="contact.html" class="active">Liên hệ</a></li>
+            </ul>
+            <button class="menu-btn" id="menuBtn" aria-label="Mở menu">☰</button>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+        <section>
+            <h1><span class="gradient-text">Liên hệ</span> với mình</h1>
+            <p style="color: var(--muted);">Hãy gửi tin nhắn hoặc kết nối với mình qua các kênh bên dưới.</p>
+
+            <div class="contact-grid">
+                <!-- INFO -->
+                <div class="glass">
+                    <h3>📫 Thông tin kết nối</h3>
+                    <p style="color: var(--muted); font-size: 14px; margin-top: 8px;">
+                        Mình luôn sẵn sàng trao đổi về cơ hội học tập, dự án phần mềm hoặc hợp tác phát triển.
+                    </p>
+
+                    <div class="contact-info-list">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-detail">
+                                <h4>Email</h4>
+                                <a href="mailto:yueying@example.com">yueying@example.com</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">🐙</div>
+                            <div class="contact-detail">
+                                <h4>GitHub</h4>
+                                <a href="https://github.com" target="_blank" rel="noopener">github.com/yueying</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">💼</div>
+                            <div class="contact-detail">
+                                <h4>LinkedIn</h4>
+                                <a href="https://linkedin.com" target="_blank" rel="noopener">linkedin.com/in/yueying</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-detail">
+                                <h4>Địa điểm</h4>
+                                <p>Việt Nam</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FORM -->
+                <div class="glass">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Họ và tên</label>
+                            <input type="text" id="name" class="form-control" placeholder="Nhập tên của bạn" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="email@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Chủ đề</label>
+                            <input type="text" id="subject" class="form-control" placeholder="Chủ đề tin nhắn" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Nội dung tin nhắn</label>
+                            <textarea id="message" class="form-control" placeholder="Nhập nội dung tin nhắn..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Gửi tin nhắn 🚀</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>© Yue Ying · Built with HTML, CSS & JS</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+        if (menuBtn) {
+            menuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('open');
+                menuBtn.textContent = navLinks.classList.contains('open') ? '✕' : '☰';
+            });
+        }
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Cảm ơn bạn đã gửi tin nhắn! Mình sẽ phản hồi sớm nhất có thể.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

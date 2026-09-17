@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -124,8 +123,9 @@
             transition: color .25s;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover, .nav-links a.active {
             color: white;
+            font-weight: 600;
         }
 
         .menu-btn {
@@ -227,7 +227,7 @@
             background: rgba(255,255,255,.04);
         }
 
-        /* PROFILE CARD */
+        /* PROFILE CARD & AVATAR */
         .profile-card {
             position: relative;
             padding: 30px;
@@ -249,19 +249,23 @@
             opacity: .7;
         }
 
-        .avatar {
+        .avatar-wrapper {
             width: 140px;
             height: 140px;
             margin: 0 auto 20px;
             border-radius: 50%;
-            display: grid;
-            place-items: center;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 50px;
-            font-weight: 800;
+            padding: 4px;
             background: linear-gradient(135deg, #7c3aed, #0891b2);
-            border: 5px solid rgba(255,255,255,.1);
             box-shadow: 0 0 50px rgba(139,92,246,.3);
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            background: #1e293b;
         }
 
         .profile-card h2 {
@@ -283,8 +287,7 @@
             margin-top: 22px;
         }
 
-        .profile-tags span,
-        .skill {
+        .profile-tags span, .skill {
             border: 1px solid var(--border);
             background: rgba(255,255,255,.04);
             padding: 6px 11px;
@@ -322,59 +325,12 @@
             margin-top: 8px;
         }
 
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-        }
-
         .glass {
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 18px;
             padding: 28px;
             backdrop-filter: blur(12px);
-        }
-
-        .glass h3 {
-            font-size: 18px;
-            margin-bottom: 14px;
-        }
-
-        .glass p {
-            color: var(--muted);
-            font-size: 14px;
-        }
-
-        .facts {
-            display: grid;
-            gap: 16px;
-        }
-
-        .fact {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .fact-icon {
-            width: 42px;
-            height: 42px;
-            display: grid;
-            place-items: center;
-            background: rgba(139,92,246,.13);
-            border-radius: 12px;
-            font-size: 20px;
-        }
-
-        .fact strong {
-            display: block;
-            font-size: 14px;
-        }
-
-        .fact span {
-            color: var(--muted);
-            font-size: 13px;
         }
 
         /* SKILLS */
@@ -460,7 +416,7 @@
             font-weight: 600;
         }
 
-        /* CI/CD */
+        /* CI/CD PIPELINE */
         .pipeline {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -508,27 +464,6 @@
             font-weight: 600;
         }
 
-        /* CONTACT */
-        .contact {
-            text-align: center;
-            max-width: 680px;
-            margin: auto;
-        }
-
-        .contact p {
-            color: var(--muted);
-            margin: 14px auto 28px;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            color: #cbd5e1;
-            font-size: 13px;
-        }
-
         /* FOOTER */
         footer {
             border-top: 1px solid var(--border);
@@ -569,13 +504,8 @@
                 margin: auto;
             }
 
-            .about-grid,
             .projects {
                 grid-template-columns: 1fr 1fr;
-            }
-
-            .project:last-child {
-                grid-column: 1 / -1;
             }
         }
 
@@ -614,43 +544,8 @@
                 padding: 55px 0;
             }
 
-            .about-grid,
-            .projects,
-            .pipeline {
+            .projects, .pipeline {
                 grid-template-columns: 1fr;
-            }
-
-            .project:last-child {
-                grid-column: auto;
-            }
-
-            .pipeline-step {
-                display: grid;
-                grid-template-columns: 38px 1fr;
-                text-align: left;
-                align-items: center;
-                column-gap: 14px;
-            }
-
-            .pipeline-step .number {
-                grid-row: span 2;
-                margin: 0;
-            }
-
-            .pipeline-step h3 {
-                margin-bottom: 0;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }
-
-            *,
-            *::before,
-            *::after {
-                transition-duration: .01ms !important;
             }
         }
     </style>
@@ -665,14 +560,14 @@
     <!-- NAVIGATION -->
     <nav>
         <div class="container nav-inner">
-            <a href="#home" class="logo">Yue<span>.dev</span></a>
+            <a href="index.html" class="logo">Yue<span>.dev</span></a>
 
             <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Trang chủ</a></li>
-                <li><a href="#about">Giới thiệu</a></li>
+                <li><a href="index.html" class="active">Trang chủ</a></li>
+                <li><a href="about.html">Giới thiệu</a></li>
                 <li><a href="#skills">Kỹ năng</a></li>
                 <li><a href="#projects">Dự án</a></li>
-                <li><a href="#contact">Liên hệ</a></li>
+                <li><a href="contact.html">Liên hệ</a></li>
             </ul>
 
             <button class="menu-btn" id="menuBtn" aria-label="Mở menu">☰</button>
@@ -701,17 +596,16 @@
                 </p>
 
                 <div class="buttons">
-                    <a href="#projects" class="btn btn-primary">
-                        Xem dự án ↗
-                    </a>
-                    <a href="#contact" class="btn btn-secondary">
-                        Liên hệ với mình
-                    </a>
+                    <a href="#projects" class="btn btn-primary">Xem dự án ↗</a>
+                    <a href="contact.html" class="btn btn-secondary">Liên hệ với mình</a>
                 </div>
             </div>
 
             <div class="profile-card">
-                <div class="avatar">YY</div>
+                <!-- AVATAR IMAGE -->
+                <div class="avatar-wrapper">
+                    <img src="avatar.jpg" alt="Yue Ying Avatar" class="avatar-img" onerror="this.src='https://via.placeholder.com/140/7c3aed/ffffff?text=Yue+Ying'">
+                </div>
                 <h2>Yue Ying</h2>
                 <p>Software Engineering Student</p>
                 <p>ICTU · Việt Nam</p>
@@ -724,72 +618,11 @@
             </div>
         </section>
 
-        <!-- ABOUT -->
-        <section id="about">
-            <div class="container">
-                <div class="section-heading">
-                    <div class="small">01 / About me</div>
-                    <h2>Một chút về mình</h2>
-                    <p>Không ngừng học hỏi, không ngừng cải thiện.</p>
-                </div>
-
-                <div class="about-grid">
-                    <div class="glass">
-                        <h3>👋 Xin chào!</h3>
-                        <p>
-                            Mình là một sinh viên ngành Kỹ thuật phần mềm.
-                            Hiện tại mình đang tập trung học lập trình,
-                            phát triển ứng dụng web và tìm hiểu quy trình
-                            CI/CD trong thực tế.
-                            <br><br>
-                            Mục tiêu của mình là xây dựng những sản phẩm
-                            có ích, viết code tốt hơn mỗi ngày và tích lũy
-                            kinh nghiệm qua các dự án thực tế.
-                        </p>
-                    </div>
-
-                    <div class="glass facts">
-                        <div class="fact">
-                            <div class="fact-icon">🎓</div>
-                            <div>
-                                <strong>Học vấn</strong>
-                                <span>Kỹ thuật phần mềm · ICTU</span>
-                            </div>
-                        </div>
-
-                        <div class="fact">
-                            <div class="fact-icon">📍</div>
-                            <div>
-                                <strong>Địa điểm</strong>
-                                <span>Việt Nam</span>
-                            </div>
-                        </div>
-
-                        <div class="fact">
-                            <div class="fact-icon">🎯</div>
-                            <div>
-                                <strong>Định hướng</strong>
-                                <span>Software Developer / DevOps</span>
-                            </div>
-                        </div>
-
-                        <div class="fact">
-                            <div class="fact-icon">🌱</div>
-                            <div>
-                                <strong>Trạng thái</strong>
-                                <span>Đang học hỏi và phát triển</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- SKILLS -->
         <section id="skills">
             <div class="container">
                 <div class="section-heading">
-                    <div class="small">02 / Skills</div>
+                    <div class="small">01 / Skills</div>
                     <h2>Công nghệ mình đang học</h2>
                     <p>Những công cụ và kiến thức mình đang từng bước làm chủ.</p>
                 </div>
@@ -819,9 +652,9 @@
         <section id="projects">
             <div class="container">
                 <div class="section-heading">
-                    <div class="small">03 / Projects</div>
+                    <div class="small">02 / Projects</div>
                     <h2>Dự án & bài thực hành</h2>
-                    <p>Một số dự án có thể giới thiệu trên portfolio.</p>
+                    <p>Một số dự án nổi bật trong hành trình học tập.</p>
                 </div>
 
                 <div class="projects">
@@ -829,18 +662,13 @@
                         <div class="project-cover">🌐</div>
                         <div class="project-content">
                             <h3>Personal Portfolio</h3>
-                            <p>
-                                Website cá nhân giới thiệu bản thân,
-                                kỹ năng, dự án và hành trình học tập.
-                            </p>
+                            <p>Website cá nhân giới thiệu bản thân, kỹ năng, dự án và hành trình học tập.</p>
                             <div class="project-tech">
                                 <span>HTML</span>
                                 <span>CSS</span>
                                 <span>JavaScript</span>
                             </div>
-                            <a class="project-link" href="#home">
-                                Đang phát triển ↗
-                            </a>
+                            <a class="project-link" href="index.html">Đang phát triển ↗</a>
                         </div>
                     </article>
 
@@ -848,18 +676,13 @@
                         <div class="project-cover">📊</div>
                         <div class="project-content">
                             <h3>Quản lý điểm số</h3>
-                            <p>
-                                Ứng dụng quản lý sinh viên và điểm số
-                                với giao diện web và cơ sở dữ liệu.
-                            </p>
+                            <p>Ứng dụng quản lý sinh viên và điểm số với giao diện web và cơ sở dữ liệu.</p>
                             <div class="project-tech">
                                 <span>C#</span>
                                 <span>ASP.NET</span>
                                 <span>SQL</span>
                             </div>
-                            <a class="project-link" href="#contact">
-                                Xem chi tiết ↗
-                            </a>
+                            <a class="project-link" href="contact.html">Xem chi tiết ↗</a>
                         </div>
                     </article>
 
@@ -867,29 +690,24 @@
                         <div class="project-cover">⚙️</div>
                         <div class="project-content">
                             <h3>CI/CD Pipeline</h3>
-                            <p>
-                                Thực hành tự động hóa quy trình build,
-                                kiểm tra và triển khai website bằng GitHub Actions.
-                            </p>
+                            <p>Thực hành tự động hóa quy trình build, kiểm tra và triển khai website với GitHub Actions.</p>
                             <div class="project-tech">
                                 <span>Git</span>
                                 <span>GitHub</span>
                                 <span>DevOps</span>
                             </div>
-                            <a class="project-link" href="#pipeline">
-                                Xem quy trình ↗
-                            </a>
+                            <a class="project-link" href="#pipeline">Xem quy trình ↗</a>
                         </div>
                     </article>
                 </div>
             </div>
         </section>
 
-        <!-- CI/CD -->
+        <!-- CI/CD PIPELINE -->
         <section id="pipeline">
             <div class="container">
                 <div class="section-heading">
-                    <div class="small">04 / DevOps Lab</div>
+                    <div class="small">03 / DevOps Lab</div>
                     <h2>CI/CD Pipeline</h2>
                     <p>Quy trình triển khai tự động trong bài thực hành.</p>
                 </div>
@@ -908,7 +726,7 @@
                             <div class="number">02</div>
                             <div>
                                 <h3>CI Build</h3>
-                                <p>Tự động kiểm tra và build.</p>
+                                <p>Tự động kiểm tra & audit Lighthouse CI.</p>
                             </div>
                         </div>
 
@@ -936,72 +754,24 @@
                 </div>
             </div>
         </section>
-
-        <!-- CONTACT -->
-        <section id="contact">
-            <div class="container">
-                <div class="glass contact">
-                    <div class="section-heading">
-                        <div class="small">05 / Contact</div>
-                        <h2>Cùng tạo ra điều gì đó nhé!</h2>
-                    </div>
-
-                    <p>
-                        Nếu bạn muốn trao đổi về lập trình, dự án,
-                        công nghệ hoặc đơn giản là làm quen,
-                        hãy kết nối với mình.
-                    </p>
-
-                    <div class="buttons">
-                        <a href="tranhbriona@gmail.com" class="btn btn-primary">
-                            ✉ Gửi email
-                        </a>
-                        <a href="https://github.com/dtc235190003-vietah" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-                            GitHub ↗
-                        </a>
-                    </div>
-
-                    <div class="contact-info">
-                        <span>📧 your-email@example.com</span>
-                        <span>💻 github.com/your-username</span>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
     <!-- FOOTER -->
     <footer>
         <div class="container">
-            <p>
-                © <span id="year"></span> <span class="footer-highlight">Yue Ying</span>.
-                Built with HTML, CSS & JavaScript.
-            </p>
+            <p>© <span id="year"></span> <span class="footer-highlight">Yue Ying</span>. Built with HTML, CSS & JavaScript.</p>
             <p>Deployed automatically via GitHub Actions 🚀</p>
         </div>
     </footer>
 
     <script>
-        // Hiển thị năm hiện tại
-        document.getElementById('year').textContent =
-            new Date().getFullYear();
-
-        // Menu mobile
+        document.getElementById('year').textContent = new Date().getFullYear();
         const menuBtn = document.getElementById('menuBtn');
         const navLinks = document.getElementById('navLinks');
 
         menuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('open');
-            menuBtn.textContent =
-                navLinks.classList.contains('open') ? '✕' : '☰';
-        });
-
-        // Đóng menu sau khi chọn liên kết
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('open');
-                menuBtn.textContent = '☰';
-            });
+            menuBtn.textContent = navLinks.classList.contains('open') ? '✕' : '☰';
         });
     </script>
 </body>
