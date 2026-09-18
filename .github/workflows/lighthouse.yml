@@ -1,0 +1,29 @@
+name: Lighthouse CI Audit
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  lighthouse-audit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli@0.13.x
+
+      - name: Run Lighthouse CI Audit
+        run: |
+          # Chạy quét Lighthouse trên 3 trang web của bạn
+          lhci collect --staticDistDir=. --url=http://localhost:8080/index.html --url=http://localhost:8080/about.html --url=http://localhost:8080/contact.html
+          
+          # Đặt điều kiện: Điểm phải >= 80% (0.8) thì mới Pass (Tích xanh)
+          lhci assert --assertions.categories:performance=minScore:0.8 --assertions.categories:accessibility=minScore:0.9 --assertions.categories:seo=minScore:0.9
